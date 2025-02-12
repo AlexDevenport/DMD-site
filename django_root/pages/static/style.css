@@ -1,0 +1,158 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Px437 IBM VGA 9x16';
+            src: url(fonts/Px437_IBM_VGA_9x16.ttf);
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #000000;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-image: url(background.png);
+            background-attachment: fixed;
+            background-position-y: center;
+            background-position-x: center;
+            flex-direction: column;
+        }
+
+        .container {
+            white-space: nowrap;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+            position: fixed;
+            flex-direction: column;
+        }
+
+        .room-cell {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .list
+        {
+            display: grid;
+            justify-items: center;
+        }
+
+        .image-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-background {
+            flex-shrink: 0;
+            width: 1200px;
+            height: 800px;
+        }
+
+        .image-puter {}
+
+        .image-case {
+            margin-top: -46px;
+            z-index: -1;
+            display: block;
+        }
+
+
+        .image-background img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .unselectable {
+            user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .same-layer {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .evil-text {
+            font-family: 'Px437 IBM VGA 9x16';
+            font-size: 300%;
+            margin-bottom: 32px;
+            margin-top: 32px;
+        }
+
+        .red {
+            color: crimson;
+        }
+
+        .white {
+            color: #d8dcff;
+        }
+
+        .black {
+            color: black;
+        }
+
+        .screen-text {
+            font-family: 'Px437 IBM VGA 9x16';
+            margin-top: -20px;
+            text-align: center;
+            font-size: 2000%;
+            z-index: 11;
+        }
+
+        .crisp {
+            /* IE, only works on <img> tags */
+            -ms-interpolation-mode: nearest-neighbor;
+            /* Firefox */
+            image-rendering: crisp-edges;
+            /* Chromium + Safari */
+            image-rendering: pixelated;
+        }
+
+        .table {
+            display: block;
+            margin-top: -25%;
+        }
+
+        .image-printer {
+            left: 80%;
+            top: 75%;
+            z-index: 15;
+            position: fixed;
+        }
+
+        .freespace {
+            margin-top: 70%;
+            align-items: start;
+        }
+
+        .check-text {
+            font-family: 'Px437 IBM VGA 9x16';
+            font-size: 200%;
+            z-index: 5;
+            text-align: left;
+            margin-left: 32%;
+            margin-right: 28%;
+            transform: skew(0deg, 8deg) rotate(-15deg);
+            margin-top: 100px;
+            margin-bottom: 64px;
+        }
+
+        .high-z {
+            z-index: 10;
+        }
