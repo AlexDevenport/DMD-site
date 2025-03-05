@@ -66,6 +66,7 @@ nav a {
     color: #801a1a;
     text-decoration: none;
     font-size: 32px;
+    font-weight: bolder;
     padding: 10px 20px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -126,12 +127,13 @@ input {
     background-color:#f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
-    width: 500px;
+    width: 600px;
 }
 
 .title-text {
     font-size: 48px;
     color: #581515;
+    font-weight: bold;
 }
 
 select {
@@ -140,7 +142,7 @@ select {
     background-color:#f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
-    width: 500px;
+    width: 600px;
 }
 
 option {
@@ -149,7 +151,7 @@ option {
     background-color:#f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
-    width: 500px;
+    width: 600px;
 }
 
 .things {
