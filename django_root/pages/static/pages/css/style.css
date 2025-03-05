@@ -1,158 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Ponomar&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.ponomar-regular {
+    font-family: "Ponomar", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
 
-        @font-face {
-            font-family: 'Px437 IBM VGA 9x16';
-            src: url(fonts/Px437_IBM_VGA_9x16.ttf);
-        }
-
-        body {
-            overflow-x: hidden;
-            background-color: #000000;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background-image: url(background.png);
-            background-attachment: fixed;
-            background-position-y: center;
-            background-position-x: center;
-            flex-direction: column;
-        }
-
-        .container {
-            white-space: nowrap;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            vertical-align: middle;
-            position: fixed;
-            flex-direction: column;
-        }
-
-        .room-cell {
-            display: grid;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .list
-        {
-            display: grid;
-            justify-items: center;
-        }
-
-        .image-container {
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-background {
-            flex-shrink: 0;
-            width: 1200px;
-            height: 800px;
-        }
-
-        .image-puter {}
-
-        .image-case {
-            margin-top: -46px;
-            z-index: -1;
-            display: block;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url('../images/aow_background.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    font-family: Ponomar;
+    font-size: 32px;
+}
 
 
-        .image-background img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-top: 20px;
+}
 
-        .unselectable {
-            user-drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-drag: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
+.content-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
-        .same-layer {
-            grid-column: 1;
-            grid-row: 1;
-        }
+.scroll-image {
+    scale: 200%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: -10;
+    margin-top: 60px;
+    min-width: 30%;
+}
 
-        .evil-text {
-            font-family: 'Px437 IBM VGA 9x16';
-            font-size: 300%;
-            margin-bottom: 32px;
-            margin-top: 32px;
-        }
+nav {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: grid;
+}
 
-        .red {
-            color: crimson;
-        }
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
 
-        .white {
-            color: #d8dcff;
-        }
+nav a {
+    color: #801a1a;
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: bolder;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
-        .black {
-            color: black;
-        }
+nav a:hover {
+    background-color: #f0d59b57;
+}
 
-        .screen-text {
-            font-family: 'Px437 IBM VGA 9x16';
-            margin-top: -20px;
-            text-align: center;
-            font-size: 2000%;
-            z-index: 11;
-        }
+.menu-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #801a1a;
+}
 
-        .crisp {
-            /* IE, only works on <img> tags */
-            -ms-interpolation-mode: nearest-neighbor;
-            /* Firefox */
-            image-rendering: crisp-edges;
-            /* Chromium + Safari */
-            image-rendering: pixelated;
-        }
 
-        .table {
-            display: block;
-            margin-top: -25%;
-        }
+.crisp {
+    image-rendering: -moz-crisp-edges;
+    /* Firefox */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* IE */
+    image-rendering: crisp-edges;
+    /* Стандартное свойство */
+    image-rendering: pixelated;
+}
 
-        .image-printer {
-            left: 80%;
-            top: 75%;
-            z-index: 15;
-            position: fixed;
-        }
+.top {
+    z-index: 1000;
+    display: inline;
+}
 
-        .freespace {
-            margin-top: 70%;
-            align-items: start;
-        }
+.unselectable {
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
 
-        .check-text {
-            font-family: 'Px437 IBM VGA 9x16';
-            font-size: 200%;
-            z-index: 5;
-            text-align: left;
-            margin-left: 32%;
-            margin-right: 28%;
-            transform: skew(0deg, 8deg) rotate(-15deg);
-            margin-top: 100px;
-            margin-bottom: 64px;
-        }
+.scroll-content {
+    display: block;
+    margin-left: 23%;
+    margin-right: 23%;
+    position: relative;
+    z-index: 100;
+    top: -500px;
+    justify-items: center;
+}
 
-        .high-z {
-            z-index: 10;
-        }
+form {
+    font-family: Ponomar;
+}
+
+input {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 600px;
+}
+
+.title-text {
+    font-size: 48px;
+    color: #581515;
+    font-weight: bold;
+}
+
+select {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 600px;
+}
+
+option {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 600px;
+}
+
+.things {
+    justify-items: center;
+    justify-self: center;
+}
