@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Ponomar&display=swap');
+
+.ponomar-regular {
+    font-family: "Ponomar", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -5,8 +13,11 @@ body {
     background-image: url('aow_background.png');
     background-size: cover;
     background-position: center;
-    overflow:hidden;
+    overflow: hidden;
+    font-family: Ponomar;
+    font-size: 32px;
 }
+
 
 .container {
     position: relative;
@@ -52,7 +63,7 @@ nav ul {
 }
 
 nav a {
-    color: #333;
+    color: #801a1a;
     text-decoration: none;
     font-size: 32px;
     padding: 10px 20px;
@@ -61,13 +72,13 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #f0d59bc4;
+    background-color: #f0d59b57;
 }
 
 .menu-text {
     margin-top: 20px;
     font-size: 14px;
-    color: #666;
+    color: #801a1a;
 }
 
 
@@ -95,11 +106,53 @@ nav a:hover {
     -ms-user-select: none;
 }
 
-.scroll-content{
+.scroll-content {
     display: block;
     margin-left: 23%;
     margin-right: 23%;
     position: relative;
     z-index: 100;
     top: -500px;
+    justify-items: center;
+}
+
+form {
+    font-family: Ponomar;
+}
+
+input {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 500px;
+}
+
+.title-text {
+    font-size: 48px;
+    color: #581515;
+}
+
+select {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 500px;
+}
+
+option {
+    font-family: Ponomar;
+    font-size: 24px;
+    background-color:#f0d4a07e;
+    border-radius: 10px;
+    border-color: #581515;
+    width: 500px;
+}
+
+.things {
+    justify-items: center;
+    justify-self: center;
 }
