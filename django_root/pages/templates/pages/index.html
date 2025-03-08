@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Image Background with Menu</title>
+    <title>amogus sussus</title>
     <!-- Подключение CSS через Django static -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
@@ -13,38 +13,15 @@
     <!-- Контейнер с фоном -->
     <div class="background-container">
         <div class="container">
-            <div class="top">
-                <nav>
-                    <ul>
-                        <li><a href="#">Главная</a></li>
-                        <li><a href="#">Просмотр</a></li>
-                        <li><a href="#">Новый</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <img src="{% static 'pages/images/scroll.png' %}" alt="Scroll Image" class="scroll-image crisp unselectable">
+            <!-- шаблон navbar -->
+            <img src="{% static 'pages/images/scroll.png' %}" alt="Scroll Image"
+                class="scroll-image crisp unselectable">
             <div class="scroll-content">
                 <div class="title-text">
-                    <a>Шаг 123141</a>
-                </div>
-                <a>На этом шагу вы должны бла-бла-бла</a>
-                <div class="things">
-                    <form action="">
-                        <input type="text" id="fname" name="fname" value="Имя"><br>
-                        <select>
-                            <option value="option1">Раса1</option>
-                            <option value="option2">Класс232</option>
-                            <option value="option3">Еще опции</option>
-                        </select><br>
-                        <input type="submit" value="Отправить">
-                    </form>
-                </div>
-                <div>
-                    <a>Описание текущего выбора или что-то типа того</a>
+                    <!-- шаблон содержимого -->
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
