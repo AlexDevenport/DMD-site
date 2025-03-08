@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>amogus sussus</title>
+    <title>{% block title %}amogus sussus{% endblock %}</title>
     <!-- Подключение CSS через Django static -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'pages/css/style.css' %}">
@@ -13,15 +13,20 @@
     <!-- Контейнер с фоном -->
     <div class="background-container">
         <div class="container">
-            <!-- шаблон navbar -->
+            <!-- Включение навбара -->
+            {% include 'pages/navbar.html' %}
+
+            <!-- Основное содержимое -->
             <img src="{% static 'pages/images/scroll.png' %}" alt="Scroll Image"
                 class="scroll-image crisp unselectable">
             <div class="scroll-content">
                 <div class="title-text">
                     <!-- шаблон содержимого -->
+                    {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

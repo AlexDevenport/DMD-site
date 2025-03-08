@@ -1,5 +1,11 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-    return render(request, 'pages/index.html')
+def base(request):
+    return render(request, 'pages/base.html')
+
+def navbar(request):
+    return render(request, 'pages/navbar.html')
+
+def form_page(request):
+    return render(request, 'pages/form.html')
