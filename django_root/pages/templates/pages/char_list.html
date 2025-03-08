@@ -1,8 +1,12 @@
 {% extends 'pages/base.html' %}
 
-{% block title %}Регистрация{% endblock %}
+{% block title %}Список персонажей{% endblock %}
 
 {% block content %}
-<a>Списо персонажей</a>
-<!-- Тут каждый персонаж списком шаблонов char_list_elem -->
+<a>Список персонажей</a>
+<div class="char-list-container">
+    {% for character in characters %}
+        {% include 'pages/char_list_elem.html' with character=character %}
+    {% endfor %}
+</div>
 {% endblock %}

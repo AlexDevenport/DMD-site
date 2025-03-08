@@ -12,6 +12,8 @@
     </form>
 </div>
 <div>
-    <a><a href="#">Создать аккаунт</a></a>
+    <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
 </div>
 {% endblock %}
+
+<!--логин-->
