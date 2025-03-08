@@ -2,8 +2,9 @@
     <nav>
         <ul>
             <li><a href="{% url 'base' %}" class="{% if request.resolver_match.url_name == 'base' %}active{% endif %}">Главная</a></li>
-            <li><a href="{% url 'form' %}" class="{% if request.resolver_match.url_name == 'form' %}active{% endif %}">Форма</a></li>
+            <li><a href="{% url 'form' %}" class="{% if request.resolver_match.url_name == 'form' %}active{% endif %}">Список</a></li> <!--какая нахуй орма-->
             <li><a href="#">Новый</a></li>
+            <li><a href="#">Вход</a></li>
         </ul>
     </nav>
 </div>

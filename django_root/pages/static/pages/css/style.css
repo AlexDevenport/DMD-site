@@ -134,6 +134,7 @@ input {
     font-size: 48px;
     color: #581515;
     font-weight: bold;
+    justify-self: center;
 }
 
 select {
@@ -157,4 +158,67 @@ option {
 .things {
     justify-items: center;
     justify-self: center;
+}
+
+.char-list-container
+{
+    background-color: bisque;
+    width: 93%;
+    border-radius: 10px;
+    display: grid;
+    padding: 10px 20px;
+    margin: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.char-list-container table tbody
+{
+    width: max-content;
+}
+
+.char-list-big-text
+{
+    color: #801a1a;
+    font-size: 24px;
+    margin-left: 60px;
+    justify-self: left;
+}
+
+.char-list-small-text
+{
+    color: #af6a49;
+    font-size: 18px;
+    margin-left: 60px;
+    justify-self: left;
+}
+
+.char-list-edit-text
+{
+    color: #801a1a;
+    font-size: 24px;
+    margin-left: 60px;
+    justify-self: right;
+    margin-left: 50%;
+}
+
+.char-list-preview-pic-cont
+{   
+    width: 120px;
+    height: 120px;
+    border-style: solid;
+    overflow: hidden;
+    border-radius: 5px;
+    border-color: #58151579;
+    align-content: center;
+    display: grid;
+}
+
+.char-list-preview-pic
+{
+    display: block;
+    max-width: 120px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    overflow: hidden;
 }
