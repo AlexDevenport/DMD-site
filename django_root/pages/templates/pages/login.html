@@ -1,19 +1,35 @@
 {% extends 'pages/base.html' %}
 
+{% load static %}
+
 {% block title %}Вход{% endblock %}
 
 {% block content %}
 <a>Вход</a>
 <div class="things">
-    <form action="">
-        <input type="text" id="first" name="first" value="login"><br>
-        <input type="password" id="password" name="password" value="password"><br>
+    <!-- Блок для отображения сообщений -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form id="loginForm" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="first" name="first" placeholder="Логин"><br>
+        <input type="password" id="password" name="password" placeholder="Пароль"><br>
         <input type="submit" value="Отправить">
     </form>
+    <div id="error-message" style="color: red; display: none;">Пожалуйста, заполните все поля.</div>
 </div>
 <div>
     <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
 </div>
+
+<!-- Подключаем внешний JavaScript-файл -->
+<script src="{% static 'pages/js/login.js' %}"></script>
 {% endblock %}
 
 <!--логин-->

@@ -4,7 +4,11 @@
             <li><a href="{% url 'main' %}" class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}">Главная</a></li>
             <li><a href="{% url 'form' %}" class="{% if request.resolver_match.url_name == 'form' %}active{% endif %}">Новый</a></li>
             <li><a href="{% url 'char_list' %}" class="{% if request.resolver_match.url_name == 'char_list' %}active{% endif %}">Список</a></li>
-            <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="#" class="active">{{ user.username }}</a></li>  <!-- Отображаем логин пользователя -->
+            {% else %}
+                <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
+            {% endif %}
         </ul>
     </nav>
 </div>

@@ -4,4 +4,7 @@
 
 {% block content %}
 <a>Это главная страница!!1!</a>
+{% if user.is_authenticated %}
+    <p>Добро пожаловать, {{ user.username }}!</p>
+{% endif %}
 {% endblock %}
