@@ -3,7 +3,7 @@ from .models import Character
 
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-# from django.contrib.auth.models import User
+# from django.http import JsonResponse
 
 
 # Create your views here.
@@ -28,8 +28,13 @@ def main_page(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')  # Получаем логин из формы
-        password = request.POST.get('password')  # Получаем пароль из формы
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Проверяем, что поля не пустые
+        if not username or not password:
+            messages.error(request, 'Пожалуйста, заполните все поля.')
+            return redirect('login')
 
         # Проверяем, совпадают ли данные с базой данных
         user = authenticate(request, username=username, password=password)
@@ -41,6 +46,6 @@ def login_view(request):
         else:
             # Если данные неверные, показываем сообщение об ошибке
             messages.error(request, 'Неверный логин или пароль')
-            return redirect('login')  # Возвращаем на страницу входа
+            return redirect('login')  # Возвращаем на страницу авторизации
     else:
         return render(request, 'pages/login.html')

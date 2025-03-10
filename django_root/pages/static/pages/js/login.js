@@ -1,19 +1,24 @@
-// static/pages/js/login.js
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Находим форму по её ID
     var loginForm = document.getElementById('loginForm');
 
-    // Добавляем обработчик события отправки формы
-    loginForm.addEventListener('submit', function(event) {
-        // Получаем значения полей логина и пароля
-        var login = document.getElementById('first').value.trim();
-        var password = document.getElementById('password').value.trim();
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            var login = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
 
-        // Проверяем, что поля не пустые
-        if (!login || !password) {
-            alert('Пожалуйста, заполните все поля.'); // Показываем сообщение об ошибке
-            event.preventDefault(); // Останавливаем отправку формы
-        }
-    });
+            // Проверяем, что поля не пустые
+            if (!login || !password) {
+                // Показываем уведомление с кнопкой "ОК"
+                alert('Пожалуйста, заполните все поля.');
+                event.preventDefault(); // Останавливаем отправку формы
+            }
+        });
+    }
+
+    // Проверяем, есть ли сообщение об ошибке от Django
+    var errorMessage = document.querySelector('.alert.alert-danger');
+    if (errorMessage) {
+        // Показываем уведомление с кнопкой "ОК"
+        alert(errorMessage.textContent);
+    }
 });

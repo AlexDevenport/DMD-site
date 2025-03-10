@@ -2,24 +2,15 @@
 
 {% load static %}
 
-{% block title %}Вход{% endblock %}
+{% block title %}Авторизация{% endblock %}
 
 {% block content %}
 <a>Авторизация</a>
 <div class="things">
-    <!-- Блок для отображения сообщений -->
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <div class="alert alert-danger">{{ message }}</div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
     {% if user.is_authenticated %}
         <!-- Если пользователь авторизован, показываем кнопку "Выйти" -->
-        <input type="text" id="username" name="username" placeholder="Логин" value="{{ user.username }}"><br>
-        <input type="password" id="password" name="password" placeholder="Пароль" value="*****"><br>
+        <input type="text" id="username" name="username" placeholder="Логин" value="{{ user.username }}" disabled><br>
+        <input type="password" id="password" name="password" placeholder="Пароль" value="*****" disabled><br>
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}  <!-- CSRF-токен для безопасности -->
             <input type="submit" value="Выйти" class="btn btn-danger">
@@ -32,7 +23,16 @@
             <input type="password" id="password" name="password" placeholder="Пароль"><br>
             <input type="submit" value="Войти">
         </form>
-        <div id="error-message" style="color: red; display: none;">Пожалуйста, заполните все поля.</div>
+        
+        <!-- Сообщение об ошибке для пустых полей -->
+        <div id="empty-fields-error" style="color: red; display: none;">Пожалуйста, заполните все поля.</div>
+        
+        <!-- Сообщение об ошибке для неправильного логина или пароля -->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="login-error" style="color: red;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
     {% endif %}
 </div>
 <div>
