@@ -1,0 +1,102 @@
+<div class="char-sheet">
+    <form action="" class="char-sheet-element">
+
+        <table class=""
+            style="display: grid; align-items: center; max-height: 560px; overflow-y: scroll; align-self: center; justify-self: center; width: auto;">
+            <tr>
+                <td><input type="text" id="fname" name="fname" placeholder="Имя" value="Владимир Владимирович Путин"
+                        class="char-sheet-element long-thing"></td>
+                <td><input id="level" type="number" value="1" style="width: auto;" min="1" max="20"
+                        class="char-sheet-element"></td>
+                <td>Уровень</td>
+            </tr>
+            <tr>
+                <td>
+                    <select class="char-sheet-element">
+                        <option value="option1">Раса1</option>
+                        <option value="option2">Раса2</option>
+                        <option value="option3">Раса3</option>
+                    </select>
+                </td>
+                <td colspan="2">кр описание расы</td>
+            </tr>
+            <tr>
+                <td>
+                    <select class="char-sheet-element">
+                        <option value="option1">Класс1</option>
+                        <option value="option2">Класс1</option>
+                        <option value="option3">Класс1</option>
+                    </select>
+                </td>
+                <td colspan="2">кр описание класа</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table class="actual-table">
+                        <tr>
+                            <td>СИЛ</td>
+                            <td>ЛОВ</td>
+                            <td>ТЕЛ</td>
+                            <td>ИНТ</td>
+                            <td>МДР</td>
+                            <td>ХАР</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="str" type="number" value="10" style="width: auto;" min="1" max="30"
+                                    class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                            <td>
+                                <input id="dex" type="number" value="10" style="width: auto;" min="1" max="30"
+                                class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                            <td>
+                                <input id="con" type="number" value="10" style="width: auto;" min="1" max="30"
+                                class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                            <td>
+                                <input id="int" type="number" value="10" style="width: auto;" min="1" max="30"
+                                class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                            <td>
+                                <input id="wis" type="number" value="10" style="width: auto;" min="1" max="30"
+                                class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                            <td>
+                                <input id="cha" type="number" value="10" style="width: auto;" min="1" max="30"
+                                class="char-sheet-stat-num char-sheet-element">
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Предметы
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="text" id="items" name="items" placeholder="Предметы" value="Предметы"
+                        class="char-sheet-element beefy-input">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Описание
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="text" id="description" name="description" placeholder="Описание" value="Описание"
+                        class="char-sheet-element beefy-input">
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Сохранить" class="char-sheet-element"></td>
+                <td></td>
+                <td><input type="submit" value="Удалить" class="char-sheet-element"></td>
+            </tr>
+        </table>
+    </form>
+</div>

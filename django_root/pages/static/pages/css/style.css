@@ -222,3 +222,53 @@ option {
     height: auto;
     overflow: hidden;
 }
+
+.char-sheet-element
+{
+    width: min-content;
+    font-size: 28px;
+}
+
+.char-sheet-element td
+{
+    padding: 10px 20px;
+}
+
+.char-sheet-element input select
+{
+    width: unset;
+    width: max-content;
+}
+
+.long-thing
+{
+    width: 500px;
+}
+
+.actual-table {
+    background-color:#f0d4a07e;
+    border-radius: 5px;
+    border-color: #581515;
+    border-style: solid;
+    
+}
+
+.beefy-input
+{
+    min-height: 200px;
+    width: 100%;
+    text-align: start;
+    justify-content: start;
+}
+
+.char-sheet
+{
+    display: grid;
+    justify-self: center;
+    justify-content: center;
+}
+
+.char-sheet-stat-num
+{
+    border: none;
+}
