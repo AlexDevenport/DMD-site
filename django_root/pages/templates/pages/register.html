@@ -3,18 +3,30 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-<a>Регистрация</a>
-<div class="things">
-    <form action="">
-        <input type="text" id="first" name="first" placeholder="Логин"><br>
-        <input type="password" id="password" name="password" placeholder="Пароль"><br>
-        <input type="email" id="mail" name="mail" placeholder="example@mail.com"><br>
-        <input type="submit" value="Отправить">
+<div style="text-align: center;">
+    <a>Регистрация</a>
+</div>
+
+<div class="things;" style="text-align: center;">
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <input type="text" id="username" name="username" placeholder="Логин" required><br>
+        <input type="email" id="email" name="email" placeholder="example@mail.com" required><br>
+        <input type="password" id="password1" name="password1" placeholder="Пароль" required><br>
+        <input type="password" id="password2" name="password2" placeholder="Подтвердите пароль" required><br>
+        <input type="submit" value="Зарегистрироваться">
+        <!-- Блок для отображения сообщений -->
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: red;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
     </form>
 </div>
-<div>
-    <li><a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Авторизация</a></li>
+<div style="text-align: center;">
+    <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Авторизация</a>
 </div>
 {% endblock %}
-
-<!--регистрация-->

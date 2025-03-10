@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Character
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.contrib import messages
 # from django.http import JsonResponse
 
@@ -12,9 +13,6 @@ def navbar(request):
 
 def form_page(request):
     return render(request, 'pages/form.html')
-
-def register_page(request):
-    return render(request, 'pages/register.html')
 
 def char_list_page(request):
     characters = Character.objects.all()  # Получаем всех персонажей из базы данных
@@ -49,3 +47,32 @@ def login_view(request):
             return redirect('login')  # Возвращаем на страницу авторизации
     else:
         return render(request, 'pages/login.html')
+    
+def register_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        # Проверка на совпадение паролей
+        if password1 != password2:
+            messages.error(request, 'Пароли не совпадают.')
+            return redirect('register')
+
+        # Проверка на уникальность имени пользователя
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Пользователь с таким именем уже существует.')
+            return redirect('register')
+
+        # Создание нового пользователя
+        user = User.objects.create_user(username=username, email=email, password=password1)
+        user.save()
+
+        # Автоматический вход после регистрации
+        login(request, user)
+        messages.success(request, 'Регистрация прошла успешно!')
+        return redirect('register')  # Перенаправление на главную страницу
+
+    else:
+        return render(request, 'pages/register.html')

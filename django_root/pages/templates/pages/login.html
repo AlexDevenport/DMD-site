@@ -5,8 +5,11 @@
 {% block title %}Авторизация{% endblock %}
 
 {% block content %}
-<a>Авторизация</a>
-<div class="things">
+<div style="text-align: center;">
+    <a>Авторизация</a>
+</div>
+
+<div class="things" style="text-align: center;">
     {% if user.is_authenticated %}
         <!-- Если пользователь авторизован, показываем кнопку "Выйти" -->
         <input type="text" id="username" name="username" placeholder="Логин" value="{{ user.username }}" disabled><br>
@@ -30,13 +33,15 @@
         <!-- Сообщение об ошибке для неправильного логина или пароля -->
         {% if messages %}
             {% for message in messages %}
-                <div id="login-error" style="color: red;">{{ message }}</div>
+                <div style="color: red;">
+                    {{ message }}
+                </div>
             {% endfor %}
         {% endif %}
     {% endif %}
 </div>
-<div>
-    <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
+<div style="text-align: center;">
+    <a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a>
 </div>
 
 <!-- Подключаем внешний JavaScript-файл -->
