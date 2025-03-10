@@ -18,7 +18,7 @@
 
     <form id="loginForm" action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <input type="text" id="first" name="first" placeholder="Логин"><br>
+        <input type="text" id="username" name="username" placeholder="Логин"><br>
         <input type="password" id="password" name="password" placeholder="Пароль"><br>
         <input type="submit" value="Отправить">
     </form>

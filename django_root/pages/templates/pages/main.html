@@ -6,6 +6,9 @@
 <a>Это главная страница!!1!</a>
 
 {% if user.is_authenticated %}
-<p>Добро пожаловать, {{ user.username }}!</p>
+    <p>Добро пожаловать, {{ user.username }}!</p>
+{% else %}
+    <p>Вы не вошли в систему.</p>
 {% endif %}
+
 {% endblock %}
