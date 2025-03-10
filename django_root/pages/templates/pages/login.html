@@ -5,7 +5,7 @@
 {% block title %}Вход{% endblock %}
 
 {% block content %}
-<a>Вход</a>
+<a>Авторизация</a>
 <div class="things">
     <!-- Блок для отображения сообщений -->
     {% if messages %}
@@ -16,13 +16,24 @@
         </div>
     {% endif %}
 
-    <form id="loginForm" action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <input type="text" id="username" name="username" placeholder="Логин"><br>
-        <input type="password" id="password" name="password" placeholder="Пароль"><br>
-        <input type="submit" value="Отправить">
-    </form>
-    <div id="error-message" style="color: red; display: none;">Пожалуйста, заполните все поля.</div>
+    {% if user.is_authenticated %}
+        <!-- Если пользователь авторизован, показываем кнопку "Выйти" -->
+        <input type="text" id="username" name="username" placeholder="Логин" value="{{ user.username }}"><br>
+        <input type="password" id="password" name="password" placeholder="Пароль" value="*****"><br>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}  <!-- CSRF-токен для безопасности -->
+            <input type="submit" value="Выйти" class="btn btn-danger">
+        </form>
+    {% else %}
+        <!-- Если пользователь не авторизован, показываем форму входа -->
+        <form id="loginForm" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="username" name="username" placeholder="Логин"><br>
+            <input type="password" id="password" name="password" placeholder="Пароль"><br>
+            <input type="submit" value="Войти">
+        </form>
+        <div id="error-message" style="color: red; display: none;">Пожалуйста, заполните все поля.</div>
+    {% endif %}
 </div>
 <div>
     <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
@@ -31,5 +42,3 @@
 <!-- Подключаем внешний JavaScript-файл -->
 <script src="{% static 'pages/js/login.js' %}"></script>
 {% endblock %}
-
-<!--логин-->

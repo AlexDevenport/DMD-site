@@ -5,8 +5,10 @@
             <li><a href="{% url 'form' %}" class="{% if request.resolver_match.url_name == 'form' %}active{% endif %}">Новый</a></li>
             <li><a href="{% url 'char_list' %}" class="{% if request.resolver_match.url_name == 'char_list' %}active{% endif %}">Список</a></li>
             {% if user.is_authenticated %}
-                <li><a href="#" class="active">{{ user.username }}</a></li>  <!-- Отображаем логин пользователя -->
+                <!-- Если пользователь аутентифицирован, показываем его имя и ссылку на страницу входа -->
+                <li><a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">{{ user.username }}</a></li>
             {% else %}
+                <!-- Если пользователь не аутентифицирован, показываем ссылку на регистрацию -->
                 <li><a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Регистрация</a></li>
             {% endif %}
         </ul>

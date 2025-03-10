@@ -16,9 +16,6 @@ def form_page(request):
 def register_page(request):
     return render(request, 'pages/register.html')
 
-def login_page(request):
-    return render(request, 'pages/login.html')
-
 def char_list_page(request):
     characters = Character.objects.all()  # Получаем всех персонажей из базы данных
     return render(request, 'pages/char_list.html', {'characters': characters})
@@ -46,4 +43,4 @@ def login_view(request):
             messages.error(request, 'Неверный логин или пароль')
             return redirect('login')  # Возвращаем на страницу входа
     else:
-        return render(request, 'login.html')
+        return render(request, 'pages/login.html')
