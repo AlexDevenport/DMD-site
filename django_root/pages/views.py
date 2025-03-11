@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Character
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.contrib import messages
 # from django.http import JsonResponse
 
@@ -10,9 +12,6 @@ from django.contrib import messages
 # Create your views here.
 def navbar(request):
     return render(request, 'pages/navbar.html')
-
-def form_page(request):
-    return render(request, 'pages/form.html')
 
 def char_list_page(request):
     characters = Character.objects.all()  # Получаем всех персонажей из базы данных
@@ -72,7 +71,28 @@ def register_view(request):
         # Автоматический вход после регистрации
         login(request, user)
         messages.success(request, 'Регистрация прошла успешно!')
-        return redirect('register')  # Перенаправление на главную страницу
+        return redirect('register')
 
     else:
         return render(request, 'pages/register.html')
+    
+@login_required
+def create_character(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        race = request.POST.get('race')
+        
+        # Создание персонажа и привязка к текущему пользователю
+        character = Character.objects.create(
+            user=request.user,
+            name=name,
+            race=race,
+        )
+        return redirect('sheet', character_id=character.id)  # Передача ID персонажа
+
+    return render(request, 'pages/form.html')
+
+@login_required
+def sheet_page(request, character_id):
+    character = get_object_or_404(Character, id=character_id)
+    return render(request, 'pages/sheet.html', {'character': character})

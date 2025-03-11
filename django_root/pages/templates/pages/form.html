@@ -8,19 +8,22 @@
     <a>На этом шагу вы должны бла-бла-бла</a>
 </div>
 <div class="things">
-    <form action="">
-        <input type="text" id="fname" name="fname" placeholder="Имя"><br>
-        <select>
-            <option value="option1">Раса1</option>
-            <option value="option2">Раса2</option>
-            <option value="option3">Раса3</option>
-        </select><br>
-        <input type="submit" value="Отправить">
-    </form>
+    {% if user.is_authenticated %}
+        <form action="{% url 'form' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="name" name="name" placeholder="Имя персонажа"><br>
+            <select name="race">
+                <option value="Раса1">Раса1</option>
+                <option value="Раса2">Раса2</option>
+                <option value="Раса3">Раса3</option>
+            </select><br>
+            <input type="submit" value="Создать персонажа">
+        </form>
+    {% else %}
+        <p>Чтобы создать персонажа, <a href="{% url 'login' %}">войдите</a> в систему.</p>
+    {% endif %}
 </div>
 <div>
     <a>Описание текущего выбора или что-то типа того</a>
 </div>
 {% endblock %}
-
-<!--новый-->
