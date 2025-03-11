@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Character
+import os
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -107,6 +108,11 @@ def create_character(request):
     return render(request, 'pages/form.html')
 
 
+from django.core.files.storage import default_storage
+from django.conf import settings
+import uuid
+
+
 @login_required
 def sheet_page(request, character_id):
     character = get_object_or_404(Character, id=character_id)
@@ -127,8 +133,20 @@ def sheet_page(request, character_id):
         character.description = request.POST.get('description')
 
         # Обработка загруженной фотографии
-        if 'photo' in request.FILES:
-            character.photo = request.FILES['photo']
+        if 'photo_url' in request.FILES:
+            photo = request.FILES['photo_url']
+            # Генерируем уникальное имя файла
+            file_extension = photo.name.split(".")[-1]
+            unique_filename = f"{uuid.uuid4().hex}.{file_extension}"
+            file_path = os.path.join(settings.MEDIA_ROOT, unique_filename)
+
+            # Сохраняем файл на сервере
+            with default_storage.open(file_path, 'wb+') as destination:
+                for chunk in photo.chunks():
+                    destination.write(chunk)
+
+            # Сохраняем путь к файлу в photo_url
+            character.photo_url = os.path.join(settings.MEDIA_URL, unique_filename)
 
         character.save()
 

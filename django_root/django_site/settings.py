@@ -126,8 +126,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'pages/static'),
 ]
 
-MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'pages/static/pages/images')
+MEDIA_URL = '/images/'  # URL-префикс для доступа к медиафайлам
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pages', 'static', 'pages', 'images')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

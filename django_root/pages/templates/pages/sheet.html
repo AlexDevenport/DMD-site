@@ -113,16 +113,16 @@
             <!-- Поле для загрузки фотографии -->
             <tr>
                 <td colspan="3">
-                    <label for="photo">Фото персонажа:</label>
-                    <input type="file" id="photo" name="photo" class="char-sheet-element">
+                    <label for="photo_url">Фото персонажа:</label>
+                    <input type="file" id="photo_url" name="photo_url" class="char-sheet-element">
                 </td>
             </tr>
             
             <!-- Отображение текущей фотографии -->
             <tr>
                 <td colspan="3">
-                    {% if character.photo %}
-                        <img src="{{ character.photo.url }}" alt="Фото персонажа" style="max-width: 200px; max-height: 200px;">
+                    {% if character.photo_url %}
+                        <img src="{{ character.photo_url }}" alt="Фото персонажа" style="max-width: 200px; max-height: 200px;">
                     {% endif %}
                 </td>
             </tr>
