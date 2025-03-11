@@ -1,34 +1,48 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Редактирование{% endblock %}
+
+{% block content %}
 <div class="char-sheet">
-    <form action="" class="char-sheet-element">
+    <form action="" method="post" class="char-sheet-element" enctype="multipart/form-data">
+        {% csrf_token %}
         <table class=""
             style="display: grid; align-items: center; max-height: 560px; overflow-y: scroll; align-self: center; justify-self: center; width: auto;">
+            
+            <!-- Имя и уровень -->
             <tr>
-                <td><input type="text" id="fname" name="fname" placeholder="Имя" value="{{ character.name }}"
-                        class="char-sheet-element long-thing"></td>
-                <td><input id="level" type="number" value="{{ character.level }}" style="width: auto;" min="1" max="20"
+                <td><input type="text" id="fname" name="name" placeholder="Имя" value="{{ character.name }}" class="char-sheet-element long-thing" disabled>
+                    <input type="hidden" name="name" value="{{ character.name }}"></td>
+                <td><input id="level" type="number" name="level" value="{{ character.level }}" style="width: auto;" min="1" max="20"
                         class="char-sheet-element"></td>
                 <td>Уровень</td>
             </tr>
+
+            <!-- Раса -->
             <tr>
                 <td>
-                    <select class="char-sheet-element">
-                        <option value="option1" {% if character.race == "Раса1" %}selected{% endif %}>Раса1</option>
-                        <option value="option2" {% if character.race == "Раса2" %}selected{% endif %}>Раса2</option>
-                        <option value="option3" {% if character.race == "Раса3" %}selected{% endif %}>Раса3</option>
+                    <select class="char-sheet-element" name="race">
+                        <option value="Раса1" {% if character.race == "Раса1" %}selected{% endif %}>Раса1</option>
+                        <option value="Раса2" {% if character.race == "Раса2" %}selected{% endif %}>Раса2</option>
+                        <option value="Раса3" {% if character.race == "Раса3" %}selected{% endif %}>Раса3</option>
                     </select>
                 </td>
                 <td colspan="2">кр описание расы</td>
             </tr>
+
+            <!-- Класс -->
             <tr>
                 <td>
-                    <select class="char-sheet-element">
-                        <option value="option1" {% if character.character_class == "Класс1" %}selected{% endif %}>Класс1</option>
-                        <option value="option2" {% if character.character_class == "Класс2" %}selected{% endif %}>Класс2</option>
-                        <option value="option3" {% if character.character_class == "Класс3" %}selected{% endif %}>Класс3</option>
+                    <select class="char-sheet-element" name="character_class">
+                        <option value="Класс1" {% if character.character_class == "Класс1" %}selected{% endif %}>Класс1</option>
+                        <option value="Класс2" {% if character.character_class == "Класс2" %}selected{% endif %}>Класс2</option>
+                        <option value="Класс3" {% if character.character_class == "Класс3" %}selected{% endif %}>Класс3</option>
                     </select>
                 </td>
                 <td colspan="2">кр описание класа</td>
             </tr>
+
+            <!-- Характеристики -->
             <tr>
                 <td colspan="3">
                     <table class="actual-table">
@@ -42,33 +56,35 @@
                         </tr>
                         <tr>
                             <td>
-                                <input id="str" type="number" value="{{ character.strength }}" style="width: auto;" min="1" max="30"
+                                <input id="str" type="number" name="strength" value="{{ character.strength }}" style="width: auto;" min="1" max="20"
                                     class="char-sheet-stat-num char-sheet-element">
                             </td>
                             <td>
-                                <input id="dex" type="number" value="{{ character.dexterity }}" style="width: auto;" min="1" max="30"
+                                <input id="dex" type="number" name="dexterity" value="{{ character.dexterity }}" style="width: auto;" min="1" max="20"
                                 class="char-sheet-stat-num char-sheet-element">
                             </td>
                             <td>
-                                <input id="con" type="number" value="{{ character.constitution }}" style="width: auto;" min="1" max="30"
+                                <input id="con" type="number" name="constitution" value="{{ character.constitution }}" style="width: auto;" min="1" max="20"
                                 class="char-sheet-stat-num char-sheet-element">
                             </td>
                             <td>
-                                <input id="int" type="number" value="{{ character.intelligence }}" style="width: auto;" min="1" max="30"
+                                <input id="int" type="number" name="intelligence" value="{{ character.intelligence }}" style="width: auto;" min="1" max="20"
                                 class="char-sheet-stat-num char-sheet-element">
                             </td>
                             <td>
-                                <input id="wis" type="number" value="{{ character.wisdom }}" style="width: auto;" min="1" max="30"
+                                <input id="wis" type="number" name="wisdom" value="{{ character.wisdom }}" style="width: auto;" min="1" max="20"
                                 class="char-sheet-stat-num char-sheet-element">
                             </td>
                             <td>
-                                <input id="cha" type="number" value="{{ character.charisma }}" style="width: auto;" min="1" max="30"
+                                <input id="cha" type="number" name="charisma" value="{{ character.charisma }}" style="width: auto;" min="1" max="20"
                                 class="char-sheet-stat-num char-sheet-element">
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
+
+            <!-- Предметы -->
             <tr>
                 <td colspan="3">
                     Предметы
@@ -80,6 +96,8 @@
                         class="char-sheet-element beefy-input">
                 </td>
             </tr>
+
+            <!-- Описание -->
             <tr>
                 <td colspan="3">
                     Описание
@@ -91,11 +109,31 @@
                         class="char-sheet-element beefy-input">
                 </td>
             </tr>
+            
+            <!-- Поле для загрузки фотографии -->
             <tr>
-                <td><input type="submit" value="Сохранить" class="char-sheet-element"></td>
-                <td></td>
-                <td><input type="submit" value="Удалить" class="char-sheet-element"></td>
+                <td colspan="3">
+                    <label for="photo">Фото персонажа:</label>
+                    <input type="file" id="photo" name="photo" class="char-sheet-element">
+                </td>
+            </tr>
+            
+            <!-- Отображение текущей фотографии -->
+            <tr>
+                <td colspan="3">
+                    {% if character.photo %}
+                        <img src="{{ character.photo.url }}" alt="Фото персонажа" style="max-width: 200px; max-height: 200px;">
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Кнопка Сохранить -->
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <input type="submit" value="Сохранить" class="char-sheet-element">
+                </td>
             </tr>
         </table>
     </form>
 </div>
+{% endblock %}

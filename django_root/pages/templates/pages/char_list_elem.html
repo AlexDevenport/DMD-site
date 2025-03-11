@@ -3,8 +3,8 @@
         <tr>
             <td rowspan="2" style="width: 100px;">
                 <div class="char-list-preview-pic-cont">
-                    {% if character.photo_url %}
-                        <img src="{{ character.photo_url }}" alt="Char" class="char-list-preview-pic">
+                    {% if character.photo %}
+                        <img src="{{ character.photo.url }}" alt="Char" class="char-list-preview-pic">
                     {% else %}
                         <p>Фото отсутствует</p>
                     {% endif %}
@@ -15,7 +15,7 @@
             </td>
             <td></td>
             <td class="justify-right">
-                <a href="#" class="char-list-edit-text">Редактировать</a>
+                <a href="{% url 'sheet' character.id %}" class="char-list-edit-text">Редактировать</a>
             </td>
         </tr>
         <tr>
@@ -24,7 +24,10 @@
             </td>
             <td></td>
             <td class="justify-right">
-                <a href="#" class="char-list-edit-text">Удалить</a>
+                <form id="delete-form-{{ character.id }}" action="{% url 'delete_character' character.id %}" method="post">
+                    {% csrf_token %}
+                </form>
+                <a href="#" class="char-list-edit-text" onclick="document.getElementById('delete-form-{{ character.id }}').submit();">Удалить</a>
             </td>
         </tr>
     </table>

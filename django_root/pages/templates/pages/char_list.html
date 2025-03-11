@@ -3,10 +3,17 @@
 {% block title %}Список персонажей{% endblock %}
 
 {% block content %}
-<a>Список персонажей</a>
-<div class="char-list-container">
-    {% for character in characters %}
-        {% include 'pages/char_list_elem.html' with character=character %}
-    {% endfor %}
+<div style="text-align: center;">
+    <a>Список персонажей</a>
+</div>
+<div class="char-list-container" style="text-align: center;">
+    {% if characters %}
+        {% for character in characters %}
+            {% include 'pages/char_list_elem.html' with character=character %}
+        {% endfor %}
+    {% else %}
+        <p>У вас пока нет персонажей!</p>
+        <a href="{% url 'form' %}">Создайте нового персонажа</a>
+    {% endif %}
 </div>
 {% endblock %}

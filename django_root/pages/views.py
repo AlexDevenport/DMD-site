@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 from django.contrib import messages
 # from django.http import JsonResponse
 
@@ -13,8 +14,10 @@ from django.contrib import messages
 def navbar(request):
     return render(request, 'pages/navbar.html')
 
+@login_required
 def char_list_page(request):
-    characters = Character.objects.all()  # Получаем всех персонажей из базы данных
+    # Фильтруем персонажей по текущему пользователю
+    characters = Character.objects.filter(user=request.user)
     return render(request, 'pages/char_list.html', {'characters': characters})
 
 def char_list_elem(request):
@@ -82,17 +85,66 @@ def create_character(request):
         name = request.POST.get('name')
         race = request.POST.get('race')
         
+        # Проверяем, что поля не пустые
+        if not name or not race:
+            messages.error(request, 'Пожалуйста, заполните все поля.')
+            return redirect('form')  # Используем 'form'
+        
+        # Проверяем, существует ли уже персонаж с таким именем для текущего пользователя
+        if Character.objects.filter(user=request.user, name=name).exists():
+            messages.error(request, 'Персонаж с таким именем уже существует.')
+            return redirect('form')  # Используем 'form'
+        
         # Создание персонажа и привязка к текущему пользователю
         character = Character.objects.create(
             user=request.user,
             name=name,
             race=race,
         )
-        return redirect('sheet', character_id=character.id)  # Передача ID персонажа
+        messages.success(request, 'Персонаж успешно создан!')
+        return redirect('sheet', character_id=character.id)
 
     return render(request, 'pages/form.html')
+
 
 @login_required
 def sheet_page(request, character_id):
     character = get_object_or_404(Character, id=character_id)
+
+    if request.method == 'POST':
+        # Обновляем данные персонажа из формы
+        character.name = request.POST.get('name')
+        character.race = request.POST.get('race')
+        character.level = request.POST.get('level')
+        character.character_class = request.POST.get('character_class')
+        character.strength = request.POST.get('strength')
+        character.dexterity = request.POST.get('dexterity')
+        character.constitution = request.POST.get('constitution')
+        character.intelligence = request.POST.get('intelligence')
+        character.wisdom = request.POST.get('wisdom')
+        character.charisma = request.POST.get('charisma')
+        character.items = request.POST.get('items')
+        character.description = request.POST.get('description')
+
+        # Обработка загруженной фотографии
+        if 'photo' in request.FILES:
+            character.photo = request.FILES['photo']
+
+        character.save()
+
+        # Перенаправляем на список персонажей
+        return redirect('char_list')
+
     return render(request, 'pages/sheet.html', {'character': character})
+
+@login_required
+def delete_character(request, character_id):
+    character = get_object_or_404(Character, id=character_id)
+    character.delete()
+    return redirect('char_list')  # Перенаправляем на страницу списка персонажей
+
+@login_required
+def check_character_name(request):
+    name = request.GET.get('name')
+    exists = Character.objects.filter(user=request.user, name=name).exists()
+    return JsonResponse({'exists': exists})

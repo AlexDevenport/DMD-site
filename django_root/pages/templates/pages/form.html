@@ -3,27 +3,99 @@
 {% block title %}Создание персонажа{% endblock %}
 
 {% block content %}
-<a>Шаг 123141</a>
-<div>
+
+<div style="text-align: center;">
+    <a>Шаг 123141</a>
+</div>
+
+<div style="text-align: center;">
     <a>На этом шагу вы должны бла-бла-бла</a>
 </div>
+
 <div class="things">
     {% if user.is_authenticated %}
-        <form action="{% url 'form' %}" method="post">
+        <form id="characterForm" action="{% url 'form' %}" method="post">
             {% csrf_token %}
-            <input type="text" id="name" name="name" placeholder="Имя персонажа"><br>
-            <select name="race">
-                <option value="Раса1">Раса1</option>
-                <option value="Раса2">Раса2</option>
-                <option value="Раса3">Раса3</option>
-            </select><br>
-            <input type="submit" value="Создать персонажа">
+            <div style="text-align: center;">
+                <input type="text" id="name" name="name" placeholder="Имя персонажа"><br>
+                <select name="race">
+                    <option value="Раса1">Раса1</option>
+                    <option value="Раса2">Раса2</option>
+                    <option value="Раса3">Раса3</option>
+                </select><br>
+                <input type="submit" value="Создать персонажа">
+            </div>
+            <!-- Сообщения об ошибках Django -->
+            {% if messages %}
+                <div style="margin-top: 10px;">
+                    {% for message in messages %}
+                        <div style="color: red;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Сообщение об ошибке для пустого поля имени -->
+            <div id="empty-name-error" style="color: red; display: none; text-align: center;">
+                Пожалуйста, введите имя персонажа.
+            </div>
+
+            <!-- Сообщение об ошибке для дубликата имени -->
+            <div id="duplicate-name-error" style="color: red; display: none; text-align: center;">
+                Персонаж с таким именем уже существует.
+            </div>
         </form>
     {% else %}
-        <p>Чтобы создать персонажа, <a href="{% url 'login' %}">войдите</a> в систему.</p>
+        <a href="{% url 'register' %}">Зарегистрироваться</a>
     {% endif %}
 </div>
 <div>
     <a>Описание текущего выбора или что-то типа того</a>
 </div>
+
+<!-- Подключаем внешний JavaScript-файл -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var characterForm = document.getElementById('characterForm');
+        var nameInput = document.getElementById('name');
+        var duplicateNameError = document.getElementById('duplicate-name-error');
+
+        if (characterForm) {
+            characterForm.addEventListener('submit', function(event) {
+                var name = nameInput.value.trim();
+
+                // Проверяем, что поле имени не пустое
+                if (!name) {
+                    // Показываем сообщение об ошибке
+                    document.getElementById('empty-name-error').style.display = 'block';
+                    event.preventDefault(); // Останавливаем отправку формы
+                } else {
+                    document.getElementById('empty-name-error').style.display = 'none';
+                }
+            });
+
+            // Асинхронная проверка имени персонажа
+            nameInput.addEventListener('blur', function() {
+                var name = nameInput.value.trim();
+
+                if (name) {
+                    fetch(`/check_character_name/?name=${encodeURIComponent(name)}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.exists) {
+                            duplicateNameError.style.display = 'block';
+                        } else {
+                            duplicateNameError.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
