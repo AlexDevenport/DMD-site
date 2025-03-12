@@ -1,1 +1,2 @@
-пен is
+This is a story of a website named DMD site. DMD site was made in a small group repo, where it was Django project. Django porject's job was simple - it sat residently in memory of some server and added thing to it's SQLite database. Orders came to it through http requests, telling it what info to add, where to add it, and in what order. This is what Django project did every day of every month of every year; and although others might have considered it CPU-taxing, DMD site relished every moment that the requests came in, as though it had been made exactly for this job.
+And DMD site was happy.
