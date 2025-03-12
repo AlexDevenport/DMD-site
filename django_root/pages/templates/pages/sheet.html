@@ -11,17 +11,22 @@
             
             <!-- Имя и уровень -->
             <tr>
-                <td><input type="text" id="fname" name="name" placeholder="Имя" value="{{ character.name }}" class="char-sheet-element long-thing" disabled>
-                    <input type="hidden" name="name" value="{{ character.name }}"></td>
-                <td><input id="level" type="number" name="level" value="{{ character.level }}" style="width: auto;" min="1" max="20"
-                        class="char-sheet-element"></td>
+                <td>
+                    <input type="text" id="fname" name="name" placeholder="Имя" value="{{ character.name }}" 
+                           class="char-sheet-element long-thing" {% if character.user != request.user %}disabled{% endif %}>
+                    <input type="hidden" name="name" value="{{ character.name }}">
+                </td>
+                <td>
+                    <input id="level" type="number" name="level" value="{{ character.level }}" style="width: auto;" min="1" max="20"
+                           class="char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
+                </td>
                 <td>Уровень</td>
             </tr>
 
             <!-- Раса -->
             <tr>
                 <td>
-                    <select class="char-sheet-element" name="race">
+                    <select class="char-sheet-element" name="race" {% if character.user != request.user %}disabled{% endif %}>
                         <option value="Человек" {% if character.race == "Человек" %}selected{% endif %}>Человек</option>
                         <option value="Полу-эльф" {% if character.race == "Полу-эльф" %}selected{% endif %}>Полу-эльф</option>
                         <option value="Полу-орк" {% if character.race == "Полу-орк" %}selected{% endif %}>Полу-орк</option>
@@ -36,7 +41,7 @@
             <!-- Класс -->
             <tr>
                 <td>
-                    <select class="char-sheet-element" name="character_class">
+                    <select class="char-sheet-element" name="character_class" {% if character.user != request.user %}disabled{% endif %}>
                         <option value="Воин" {% if character.character_class == "Воин" %}selected{% endif %}>Воин</option>
                         <option value="Чародей" {% if character.character_class == "Чародей" %}selected{% endif %}>Чародей</option>
                         <option value="Бард" {% if character.character_class == "Бард" %}selected{% endif %}>Бард</option>
@@ -60,27 +65,27 @@
                         <tr>
                             <td>
                                 <input id="str" type="number" name="strength" value="{{ character.strength }}" style="width: auto;" min="1" max="20"
-                                    class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                             <td>
                                 <input id="dex" type="number" name="dexterity" value="{{ character.dexterity }}" style="width: auto;" min="1" max="20"
-                                class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                             <td>
                                 <input id="con" type="number" name="constitution" value="{{ character.constitution }}" style="width: auto;" min="1" max="20"
-                                class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                             <td>
                                 <input id="int" type="number" name="intelligence" value="{{ character.intelligence }}" style="width: auto;" min="1" max="20"
-                                class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                             <td>
                                 <input id="wis" type="number" name="wisdom" value="{{ character.wisdom }}" style="width: auto;" min="1" max="20"
-                                class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                             <td>
                                 <input id="cha" type="number" name="charisma" value="{{ character.charisma }}" style="width: auto;" min="1" max="20"
-                                class="char-sheet-stat-num char-sheet-element">
+                                       class="char-sheet-stat-num char-sheet-element" {% if character.user != request.user %}disabled{% endif %}>
                             </td>
                         </tr>
                     </table>
@@ -95,9 +100,8 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <!--<input type="text" id="items" name="items" placeholder="Предметы" value="{{ character.items }}"
-                        class="char-sheet-element beefy-input">-->
-                        <textarea type="text" id="items" name="items" placeholder="Предметы" class="char-sheet-element beefy-input actual-table">{{ character.items }}</textarea>
+                    <textarea type="text" id="items" name="items" placeholder="Предметы" 
+                              class="char-sheet-element beefy-input actual-table" {% if character.user != request.user %}disabled{% endif %}>{{ character.items }}</textarea>
                 </td>
             </tr>
 
@@ -109,19 +113,20 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <!--<input contenteditable="true" type="text" id="description" name="description" placeholder="Описание" value="{{ character.description }}"
-                        class="char-sheet-element beefy-input">-->
-                        <textarea type="text" id="description" name="description" placeholder="Описание" class="char-sheet-element beefy-input actual-table">{{ character.description }}</textarea>
+                    <textarea type="text" id="description" name="description" placeholder="Описание" 
+                              class="char-sheet-element beefy-input actual-table" {% if character.user != request.user %}disabled{% endif %}>{{ character.description }}</textarea>
                 </td>
             </tr>
             
-            <!-- Поле для загрузки фотографии -->
+            <!-- Поле для загрузки фотографии (только для владельца) -->
+            {% if character.user == request.user %}
             <tr>
                 <td colspan="3">
                     <label for="photo_url">Фото персонажа:</label>
                     <input type="file" id="photo_url" name="photo_url" class="char-sheet-element">
                 </td>
             </tr>
+            {% endif %}
             
             <!-- Отображение текущей фотографии -->
             <tr>
@@ -132,19 +137,24 @@
                 </td>
             </tr>
 
+            <!-- Общий доступ (только для владельца) -->
+            {% if character.user == request.user %}
             <tr>
-                <td colspan="3">
-                    <a>Общий доступ <input type="checkbox" id="public" name="public" value="public" style="width: 20px;" checked></a>
-                    
+                <td colspan="3" style="text-align: center;">
+                    Общий доступ
+                    <input type="checkbox" id="public" name="public" value="public" {% if character.is_public %}checked{% endif %}>
                 </td>
             </tr>
+            {% endif %}
 
-            <!-- Кнопка Сохранить -->
+            <!-- Кнопка Сохранить (только для владельца) -->
+            {% if character.user == request.user %}
             <tr>
                 <td colspan="3" style="text-align: center;">
                     <input type="submit" value="Сохранить" class="char-sheet-element">
                 </td>
             </tr>
+            {% endif %}
         </table>
     </form>
 </div>

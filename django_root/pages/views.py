@@ -117,6 +117,10 @@ import uuid
 def sheet_page(request, character_id):
     character = get_object_or_404(Character, id=character_id)
 
+    # Проверка доступа: если персонаж не публичный и текущий пользователь не владелец
+    if not character.is_public and character.user != request.user:
+        return render(request, 'pages/main.html') # Перенаправление на главную
+
     if request.method == 'POST':
         # Обновляем данные персонажа из формы
         character.name = request.POST.get('name')
@@ -131,6 +135,7 @@ def sheet_page(request, character_id):
         character.charisma = request.POST.get('charisma')
         character.items = request.POST.get('items')
         character.description = request.POST.get('description')
+        character.is_public = request.POST.get('public') == 'public'  # Обновляем поле is_public
 
         # Обработка загруженной фотографии
         if 'photo_url' in request.FILES:

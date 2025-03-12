@@ -18,7 +18,8 @@ class Character(models.Model):
     items = models.TextField(verbose_name="Предметы", blank=True, null=True)
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
     photo_url = models.CharField(max_length=500, null=True, blank=True, verbose_name="Ссылка на фото")
-
+    is_public = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name
 
