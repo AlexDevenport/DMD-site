@@ -205,6 +205,7 @@ option {
     border-color: #58151579;
     align-content: center;
     display: grid;
+    justify-content: center;
 }
 
 .char-list-preview-pic {
