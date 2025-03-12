@@ -5,11 +5,11 @@
 {% block content %}
 
 <div style="text-align: center;">
-    <a>Шаг 123141</a>
+    <a>Создание персонажа</a>
 </div>
 
 <div style="text-align: center;">
-    <a>На этом шагу вы должны бла-бла-бла</a>
+    <a>Дайте своему персонажу имя и расу</a>
 </div>
 
 <div class="things">
@@ -19,6 +19,9 @@
             <div style="text-align: center;">
                 <input type="text" id="name" name="name" placeholder="Имя персонажа"><br>
                 <select name="race">
+                    <option value="Человек">Человек</option>
+                    <option value="Полу-эльф">Полу-эльф</option>
+                    <option value="Полу-орк">Полу-орк</option>
                     <option value="Драконорожденный">Драконорожденный</option>
                     <option value="Эльф">Эльф</option>
                     <option value="Дварф">Дварф</option>
@@ -50,8 +53,8 @@
         <a href="{% url 'register' %}">Зарегистрироваться</a>
     {% endif %}
 </div>
-<div>
-    <a>Описание текущего выбора или что-то типа того</a>
+<div style="text-align: center;">
+    <a>Учтите, что изменить имя полсле создание нельзя!</a>
 </div>
 
 <!-- Подключаем внешний JavaScript-файл -->

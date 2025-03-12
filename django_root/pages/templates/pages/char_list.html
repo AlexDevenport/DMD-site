@@ -5,7 +5,7 @@
 {% block content %}
 <div style="text-align: center;">
 </div>
-<div class="scrolling-container" style="text-align: center;">
+<div class="scrolling-container" style="display: grid; align-items: center; max-height: 560px; overflow-y: scroll; align-self: center; justify-self: center; width: 1000px;">
     {% if characters %}
         {% for character in characters %}
             {% include 'pages/char_list_elem.html' with character=character %}
