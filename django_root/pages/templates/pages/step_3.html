@@ -1,0 +1,55 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Создание персонажа{% endblock %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    <a>Шаг 3</a>
+</div>
+
+<div style="text-align: center;">
+    <a>Выберете класс</a>
+</div>
+
+<div class="things">
+    {% if user.is_authenticated %}
+    <form id="characterForm" action="{% url 'step_3' %}" method="post">
+        {% csrf_token %}
+        <div style="text-align: center;">
+            <select name="class">
+                <option value="Воин">Воин</option>
+                <option value="Чародей">Чародей</option>
+                <option value="Бард">Бард</option>
+            </select><br>
+            <input type="submit" value="Далее">
+        </div>
+</div>
+<!-- Сообщения об ошибках Django -->
+{% if messages %}
+<div style="margin-top: 10px;">
+    {% for message in messages %}
+    <div style="color: red;">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Сообщение об ошибке для пустого поля имени -->
+<div id="empty-name-error" style="color: red; display: none; text-align: center;">
+    Ошибка.
+</div>
+</form>
+{% else %}
+<a href="{% url 'register' %}">Зарегистрироваться</a>
+{% endif %}
+</div>
+<div>
+    <a>Описание текущего выбора или что-то типа того</a>
+</div>
+
+<!-- Подключаем внешний JavaScript-файл -->
+<script>
+</script>
+{% endblock %}

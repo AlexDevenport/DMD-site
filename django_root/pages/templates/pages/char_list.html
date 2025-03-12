@@ -6,7 +6,7 @@
 <div style="text-align: center;">
     <a>Список персонажей</a>
 </div>
-<div class="char-list-container" style="text-align: center;">
+<div class="scrolling-container" style="text-align: center;">
     {% if characters %}
         {% for character in characters %}
             {% include 'pages/char_list_elem.html' with character=character %}

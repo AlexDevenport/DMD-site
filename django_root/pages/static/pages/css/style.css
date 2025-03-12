@@ -124,7 +124,7 @@ form {
 input {
     font-family: Ponomar;
     font-size: 24px;
-    background-color:#f0d4a07e;
+    background-color: #f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
     width: 600px;
@@ -140,7 +140,7 @@ input {
 select {
     font-family: Ponomar;
     font-size: 24px;
-    background-color:#f0d4a07e;
+    background-color: #f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
     width: 600px;
@@ -149,7 +149,7 @@ select {
 option {
     font-family: Ponomar;
     font-size: 24px;
-    background-color:#f0d4a07e;
+    background-color: #f0d4a07e;
     border-radius: 10px;
     border-color: #581515;
     width: 600px;
@@ -160,8 +160,7 @@ option {
     justify-self: center;
 }
 
-.char-list-container
-{
+.char-list-container {
     background-color: bisque;
     width: 93%;
     border-radius: 10px;
@@ -171,29 +170,25 @@ option {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.char-list-container table tbody
-{
+.char-list-container table tbody {
     width: max-content;
 }
 
-.char-list-big-text
-{
+.char-list-big-text {
     color: #801a1a;
     font-size: 24px;
     margin-left: 60px;
     justify-self: left;
 }
 
-.char-list-small-text
-{
+.char-list-small-text {
     color: #af6a49;
     font-size: 18px;
     margin-left: 60px;
     justify-self: left;
 }
 
-.char-list-edit-text
-{
+.char-list-edit-text {
     color: #801a1a;
     font-size: 24px;
     margin-left: 60px;
@@ -201,8 +196,7 @@ option {
     margin-left: 50%;
 }
 
-.char-list-preview-pic-cont
-{   
+.char-list-preview-pic-cont {
     width: 120px;
     height: 120px;
     border-style: solid;
@@ -213,8 +207,7 @@ option {
     display: grid;
 }
 
-.char-list-preview-pic
-{
+.char-list-preview-pic {
     display: block;
     max-width: 120px;
     max-height: 120px;
@@ -223,52 +216,69 @@ option {
     overflow: hidden;
 }
 
-.char-sheet-element
-{
+.char-sheet-element {
     width: min-content;
     font-size: 28px;
 }
 
-.char-sheet-element td
-{
+.char-sheet-element td {
     padding: 10px 20px;
 }
 
-.char-sheet-element input select
-{
+.char-sheet-element input select {
     width: unset;
     width: max-content;
 }
 
-.long-thing
-{
+.long-thing {
     width: 500px;
 }
 
 .actual-table {
-    background-color:#f0d4a07e;
+    background-color: #f0d4a07e;
     border-radius: 5px;
     border-color: #581515;
     border-style: solid;
-    
+
 }
 
-.beefy-input
-{
+.beefy-input {
     min-height: 200px;
     width: 100%;
     text-align: start;
     justify-content: start;
 }
 
-.char-sheet
-{
+.char-sheet {
     display: grid;
     justify-self: center;
     justify-content: center;
 }
 
-.char-sheet-stat-num
-{
+.char-sheet-stat-num {
     border: none;
+}
+
+.just-image {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered {
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scrolling-container {
+    display: grid;
+    align-items: center;
+    max-height: 560px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    align-self: center;
+    justify-self: center;
+    width: auto;
 }

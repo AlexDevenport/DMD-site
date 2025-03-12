@@ -3,12 +3,19 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
-<a>Это главная страница!!1!</a>
+{% load static %}
+<div class="char-sheet">
+    <a>Редактор листа персонажа онлайн</a>
 
-{% if user.is_authenticated %}
-    <p>Добро пожаловать, {{ user.username }}!</p>
-{% else %}
-    <p>Вы не вошли в систему.</p>
-{% endif %}
+    <img src="{% static 'pages/images/dnd.png' %}" alt="Dungeons And Dragons" class="crisp unselectable just-image">
 
+    <a class="centered">Смотрите так-же: </a>
+    <a href="dnd.su" class="centered">DND.SU</a>
+
+    {% if user.is_authenticated %}
+    <p class="char-list-big-text centered">Добро пожаловать, {{ user.username }}!</p>
+    {% else %}
+    <p class="char-list-big-text centered">Вы не вошли в систему.</p>
+    {% endif %}
+</div>
 {% endblock %}
