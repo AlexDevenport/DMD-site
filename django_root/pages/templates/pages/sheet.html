@@ -95,8 +95,11 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="text" id="items" name="items" placeholder="Предметы" value="{{ character.items }}"
-                        class="char-sheet-element beefy-input">
+                    <!--<input type="text" id="items" name="items" placeholder="Предметы" value="{{ character.items }}"
+                        class="char-sheet-element beefy-input">-->
+                        <textarea type="text" id="items" name="items" placeholder="Предметы" class="char-sheet-element beefy-input actual-table">
+                            {{ character.items }}
+                        </textarea>
                 </td>
             </tr>
 
@@ -108,8 +111,11 @@
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="text" id="description" name="description" placeholder="Описание" value="{{ character.description }}"
-                        class="char-sheet-element beefy-input">
+                    <!--<input contenteditable="true" type="text" id="description" name="description" placeholder="Описание" value="{{ character.description }}"
+                        class="char-sheet-element beefy-input">-->
+                        <textarea type="text" id="description" name="description" placeholder="Описание" class="char-sheet-element beefy-input actual-table">
+                            {{ character.description }}
+                        </textarea>
                 </td>
             </tr>
             

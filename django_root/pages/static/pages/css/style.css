@@ -248,6 +248,9 @@ option {
     width: 100%;
     text-align: start;
     justify-content: start;
+    resize: none;
+    font-family: Ponomar;
+    font-size: 24px;
 }
 
 .char-sheet {
