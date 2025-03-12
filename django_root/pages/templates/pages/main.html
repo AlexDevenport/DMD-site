@@ -4,18 +4,20 @@
 
 {% block content %}
 {% load static %}
-<div class="char-sheet">
+<div class="char-sheet" style="text-align: center;">
     <a>Редактор листа персонажа онлайн</a>
-
-    <img src="{% static 'pages/images/dnd.png' %}" alt="Dungeons And Dragons" class="crisp unselectable just-image">
-
+    <div style="text-align: center;">
+        <img src="{% static 'pages/images/dnd.png' %}" alt="Dungeons And Dragons" class="crisp unselectable just-image">
+    </div>
     <a class="centered">Смотрите так-же: </a>
-    <a href="dnd.su" class="centered">DND.SU</a>
-
-    {% if user.is_authenticated %}
-    <p class="char-list-big-text centered">Добро пожаловать, {{ user.username }}!</p>
-    {% else %}
-    <p class="char-list-big-text centered">Вы не вошли в систему.</p>
-    {% endif %}
+    <a href="https://dnd.su" class="centered" style="text-decoration: none;">DND.SU</a>
+    
+    <div style="text-align: center;">
+        {% if user.is_authenticated %}
+        <a class="char-list-big-text">Добро пожаловать, {{ user.username }}!</a>
+        {% else %}
+        <p class="char-list-big-text">Вы не вошли в систему.</p>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

@@ -21,9 +21,12 @@
             <tr>
                 <td>
                     <select class="char-sheet-element" name="race">
-                        <option value="Раса1" {% if character.race == "Раса1" %}selected{% endif %}>Раса1</option>
-                        <option value="Раса2" {% if character.race == "Раса2" %}selected{% endif %}>Раса2</option>
-                        <option value="Раса3" {% if character.race == "Раса3" %}selected{% endif %}>Раса3</option>
+                        <option value="Человек" {% if character.race == "Человек" %}selected{% endif %}>Человек</option>
+                        <option value="Полу-эльф" {% if character.race == "Полу-эльф" %}selected{% endif %}>Полу-эльф</option>
+                        <option value="Полу-орк" {% if character.race == "Полу-орк" %}selected{% endif %}>Полу-орк</option>
+                        <option value="Драконорожденный" {% if character.race == "Драконорожденный" %}selected{% endif %}>Драконорожденный</option>
+                        <option value="Эльф" {% if character.race == "Эльф" %}selected{% endif %}>Эльф</option>
+                        <option value="Дварф" {% if character.race == "Дварф" %}selected{% endif %}>Дварф</option>
                     </select>
                 </td>
                 <td colspan="2">кр описание расы</td>
@@ -33,9 +36,9 @@
             <tr>
                 <td>
                     <select class="char-sheet-element" name="character_class">
-                        <option value="Класс1" {% if character.character_class == "Класс1" %}selected{% endif %}>Класс1</option>
-                        <option value="Класс2" {% if character.character_class == "Класс2" %}selected{% endif %}>Класс2</option>
-                        <option value="Класс3" {% if character.character_class == "Класс3" %}selected{% endif %}>Класс3</option>
+                        <option value="Воин" {% if character.character_class == "Воин" %}selected{% endif %}>Воин</option>
+                        <option value="Чародей" {% if character.character_class == "Чародей" %}selected{% endif %}>Чародей</option>
+                        <option value="Бард" {% if character.character_class == "Бард" %}selected{% endif %}>Бард</option>
                     </select>
                 </td>
                 <td colspan="2">кр описание класа</td>
