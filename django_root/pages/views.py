@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
+from django.core.files.storage import default_storage
+from django.conf import settings
+import uuid
 # from django.http import JsonResponse
 
 
@@ -106,12 +109,6 @@ def create_character(request):
         return redirect('sheet', character_id=character.id)
 
     return render(request, 'pages/form.html')
-
-
-from django.core.files.storage import default_storage
-from django.conf import settings
-import uuid
-
 
 @login_required
 def sheet_page(request, character_id):

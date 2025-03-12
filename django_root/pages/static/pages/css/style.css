@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Ponomar&display=swap');
+@font-face {
+    font-family: 'Ostrovsky-Bold';
+    src: url('../fonts/Ostrovsky-Bold_0.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
 
 .ponomar-regular {
     font-family: "Ponomar", system-ui;
