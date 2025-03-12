@@ -105,7 +105,7 @@ def create_character(request):
             name=name,
             race=race,
         )
-        messages.success(request, 'Персонаж успешно создан!')
+        # messages.success(request, 'Персонаж успешно создан!')
         return redirect('sheet', character_id=character.id)
 
     return render(request, 'pages/form.html')

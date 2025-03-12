@@ -140,7 +140,7 @@
             <!-- Общий доступ (только для владельца) -->
             {% if character.user == request.user %}
             <tr>
-                <td colspan="3" style="text-align: center;">
+                <td colspan="3">
                     Общий доступ
                     <input type="checkbox" id="public" name="public" value="public" {% if character.is_public %}checked{% endif %}>
                 </td>
